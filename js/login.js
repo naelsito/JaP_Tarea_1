@@ -4,3 +4,11 @@
 document.addEventListener("DOMContentLoaded", function(e){
 
 });
+
+function checklogin(user, pass) {
+	if(user.trim() === "" || pass.trim() === "") {
+		alert("Completa los datos porfavor.");
+	} else {
+		location.href = "login.html";
+	}
+}

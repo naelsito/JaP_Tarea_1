@@ -139,3 +139,61 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* Estilos login */
+
+.login-inicio {
+  text-align: center;
+  align-content: center;
+  height: 10em;
+  margin: 0;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 70%;
+
+
+  
+  transform: translate(-50%, -50%);
+  -webkit-box-shadow: -11px -7px 20px -8px rgba(0,0,0,0.77);
+-moz-box-shadow: -11px -7px 20px -8px rgba(0,0,0,0.77);
+box-shadow: -11px -7px 20px -8px rgba(0,0,0,0.77);
+  border
+  border-radius: 30px 30px 30px 30px;
+-moz-border-radius: 30px 30px 30px 30px;
+-webkit-border-radius: 30px 30px 30px 30px;
+border: 0px solid #000000;
+}
+
+input {
+  border: solid 2px grey;
+  border-radius: 20px 20px 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  
+  background: #F2F2F2;
+  outline: none;
+  opacity: 100%;
+  font-weight: bold;
+}
+
+.login-inicio button {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  outline: none;
+  
+
+}
+
+.login-inicio h2 {
+  margin-top: 5px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #158;
+  opacity: 100%;
+}
+
+
