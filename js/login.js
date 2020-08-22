@@ -12,3 +12,4 @@ function checklogin(user, pass) {
 		location.href = "login.html";
 	}
 }
+ 
