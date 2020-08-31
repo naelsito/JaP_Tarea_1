@@ -205,3 +205,13 @@ input {
 .lds-ring {
    animation-duration: 10s;
 }
+
+/* Especiales */
+
+#menuImg {
+  width: 35px; height: 35px;
+  border-radius: 100%;
+  margin-right: -50px;
+  margin-top: 3px;
+
+}
