@@ -19,11 +19,11 @@ function showImagesGallery(array){
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
 }
-
+/*
 document.getElementById("commentScore").addEventListener('change', function(){
     valoracion();
 })
-
+*/
 /*
 Datos JSON de Producto
 "cost": 13500,
@@ -79,43 +79,35 @@ document.addEventListener("DOMContentLoaded", function(e){
         {
             comments = resultObj.data;
 
-            /* var commentScoreJSON = document.getElementById("commentScore");
-            var commentDescriptionJSON = document.getElementById("commentDescription");
-            var commentUserJSON = document.getElementById("commentUser");
-            var commentDateTimeJSON = document.getElementById("commentDateTime");
-
-            commentScoreJSON.innerHTML = comments.score;
-            commentDescriptionJSON.innerHTML = comments.description;
-            commentUserJSON.innerHTML = comments.user;
-            commentDateTimeJSON.innerHTML = comments.dateTime;
-            */
-
+            /* Setear Valoracion a Comentario
             function valoracion() {
+                alert("hola");
                 var pts = '';
                 totPts = comments[i].score;
 
-                document.getElementById("commentPts").innerHTML = pts;
+                document.getElementById("commentScore").innerHTML = pts;
             }
-
+            */
             var comentarios = '';
-
-            for (i = 0; i < comments.length; i++){ //Cuantos comments hay
-                var pts = '';
+            //estrellas de valoración dadas por el JSON
+            for (i = 0; i < comments.length; i++){ // Veo cuantos comments hay
+                var estrellas = '';
                 for (v = 1; v <= 5; v++){
                     if(v <= comments[i].score){
-                        pts += `<span class="fa fa-star checked"></span>`; //Se agregan las estrellas
+                        estrellas += `<span class="fa fa-star checked"></span>`; //Se agregan las estrellas
                     } else {
-                        pts += `<span class="fa fa-star"></span>`; //Se sacan las estrellas
+                        estrellas += `<span class="fa fa-star"></span>`; //Se sacan las estrellas
 
                     }
                     
                 } 
+            //muestro los datos del JSON
             comentarios += `
             <div class="row text-center text-lg-left pt-2">
             <pre>
 ---------------------------------------------------------------------------------------------------------------------</pre></div>
             <div class="row text-center text-lg-left pt-2">
-                <p><b>Valoración:</b><span id="commentPts"</span></p>
+                <p><b>Valoración:</b> ` + estrellas + `</p>
             </div>
             <div class="row text-center text-lg-left pt-2">
                 <p><b>Usuario:</b> ` + comments[i].user + ` </b></p>
@@ -126,12 +118,18 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             `
 
+
             }
+        //aplico el cambio dada la etiqueta HTML
         document.getElementById("commentDescription").innerHTML = comentarios;
 
+
         } else {
-            document.getElementById("commentDescription").innerHTML = "No se pueden leer los commentarios [Error404]";
+        //en caso de no leer el JSON status =/= ok
+        document.getElementById("commentDescription").innerHTML = "No se pueden leer los commentarios [Error404]";
         }
+
     });
+
 });
 

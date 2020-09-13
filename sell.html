@@ -32,7 +32,7 @@
   <body>
     <nav class="site-header sticky-top py-1 bg-dark">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+            <a class="py-2 d-none d-md-inline-block" href="login.html">Inicio</a>
             <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
             <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
             <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
@@ -214,6 +214,36 @@
         </div>
       </div>
       <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+      <script>
+
+      //Mostrar Usuario - barra superior
+      var localuser = localStorage.getItem('Name');
+      var userimg = localStorage.getItem('GoogleImg');
+      document.getElementById("menuUsuario").innerHTML=localuser;
+      if(localStorage.getItem('GoogleImg')) {
+      document.getElementById("menuImg").src=userimg;
+      } else {
+      document.getElementById("menuImg").src= "img/user-img.png";
+      }
+        
+      //Cerrar Sesión
+       function signOut() {
+        showSpinner();
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+        localStorage.clear();
+        location.href = 'index.html';
+        hideSpinner();
+      });
+    }
+
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+  </script>
       <script src="js/jquery-3.4.1.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/dropzone.js"></script>
