@@ -19,11 +19,8 @@ function showImagesGallery(array){
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
 }
-/*
-document.getElementById("commentScore").addEventListener('change', function(){
-    valoracion();
-})
-*/
+
+
 /*
 Datos JSON de Producto
 "cost": 13500,

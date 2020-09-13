@@ -211,11 +211,15 @@ input {
 #menuImg {
   width: 35px; height: 35px;
   border-radius: 100%;
-  margin-right: -50px;
+  margin-right: -160px;
   margin-top: 3px;
 
 }
 
 .checked {
   color: orange;
+}
+
+.commentNuevo {
+  outline: none;
 }
