@@ -215,3 +215,7 @@ input {
   margin-top: 3px;
 
 }
+
+.checked {
+  color: orange;
+}

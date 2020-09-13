@@ -1,4 +1,5 @@
 var product = {};
+var comments = {};
 
 function showImagesGallery(array){
 
@@ -19,6 +20,9 @@ function showImagesGallery(array){
     }
 }
 
+document.getElementById("commentScore").addEventListener('change', function(){
+    valoracion();
+})
 
 /*
 Datos JSON de Producto
@@ -63,4 +67,71 @@ document.addEventListener("DOMContentLoaded", function(e){
             showImagesGallery(product.images);
         }
     });
+
+    /* "score": 3,
+    "description": "Ya llevo un año con este auto y la verdad que tiene sus ventajas y desventajas",
+    "user": "juan_pedro",
+    "dateTime": "2020-02-25 18:03:52"
+    */
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+
+        {
+            comments = resultObj.data;
+
+            /* var commentScoreJSON = document.getElementById("commentScore");
+            var commentDescriptionJSON = document.getElementById("commentDescription");
+            var commentUserJSON = document.getElementById("commentUser");
+            var commentDateTimeJSON = document.getElementById("commentDateTime");
+
+            commentScoreJSON.innerHTML = comments.score;
+            commentDescriptionJSON.innerHTML = comments.description;
+            commentUserJSON.innerHTML = comments.user;
+            commentDateTimeJSON.innerHTML = comments.dateTime;
+            */
+
+            function valoracion() {
+                var pts = '';
+                totPts = comments[i].score;
+
+                document.getElementById("commentPts").innerHTML = pts;
+            }
+
+            var comentarios = '';
+
+            for (i = 0; i < comments.length; i++){ //Cuantos comments hay
+                var pts = '';
+                for (v = 1; v <= 5; v++){
+                    if(v <= comments[i].score){
+                        pts += `<span class="fa fa-star checked"></span>`; //Se agregan las estrellas
+                    } else {
+                        pts += `<span class="fa fa-star"></span>`; //Se sacan las estrellas
+
+                    }
+                    
+                } 
+            comentarios += `
+            <div class="row text-center text-lg-left pt-2">
+            <pre>
+---------------------------------------------------------------------------------------------------------------------</pre></div>
+            <div class="row text-center text-lg-left pt-2">
+                <p><b>Valoración:</b><span id="commentPts"</span></p>
+            </div>
+            <div class="row text-center text-lg-left pt-2">
+                <p><b>Usuario:</b> ` + comments[i].user + ` </b></p>
+            </div>
+                <b>Comentario:</b>
+                <small><p> ` + comments[i].description + `</p></small>
+            </div>
+
+            `
+
+            }
+        document.getElementById("commentDescription").innerHTML = comentarios;
+
+        } else {
+            document.getElementById("commentDescription").innerHTML = "No se pueden leer los commentarios [Error404]";
+        }
+    });
 });
+
