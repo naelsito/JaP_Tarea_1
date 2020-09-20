@@ -1,6 +1,9 @@
 var product = {};
 var comments = {};
 
+
+
+//muestro imagenes del producto seleccionado
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
@@ -18,8 +21,8 @@ function showImagesGallery(array){
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
     }
-}
-
+} 
+    
 
 /*
 Datos JSON de Producto
@@ -46,13 +49,16 @@ document.addEventListener("DOMContentLoaded", function(e){
         {
             product = resultObj.data;
 
+            //tomo datos de ID y los guardo en variable
             var productNameJSON  = document.getElementById("productName");
             var productDescriptionJSON = document.getElementById("productDescription");
             var productCostJSON = document.getElementById("productCost");
             var productCurrencyJSON = document.getElementById("productCurrency");
             var productSoldCountJSON = document.getElementById("productSoldCount");
             var productCategoryJSON = document.getElementById("productCategory");
-        
+
+            
+            //cambio las variables por datos del JSON
             productNameJSON.innerHTML = product.name;
             productDescriptionJSON.innerHTML = product.description;
             productCostJSON.innerHTML = product.cost;
@@ -60,8 +66,49 @@ document.addEventListener("DOMContentLoaded", function(e){
             productSoldCountJSON.innerHTML = product.soldCount;
             productCategoryJSON.innerHTML = product.category;
 
+            
+
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+
+            //si hay productos relacionados
+            if(product.relatedProducts.length > 0){
+                //tomo todos los productos
+                getJSONData(PRODUCTS_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+
+                {
+                    
+                    var allProducts = resultObj.data;
+
+                    let htmlRelatedP = "";
+
+                    var relatedProductsJSON = [];
+
+                    relatedProductsJSON = product.relatedProducts;
+
+                    relatedProductsJSON.forEach(i =>{ //recorro dado array de productos relacionados
+                    
+                    
+                    //copio html en div dado cada elemento [i]
+                    htmlRelatedP += `
+                     <div class="col-lg-3 col-md-4 col-6">
+                         <div class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="` + allProducts[i].imgSrc + `" alt="">
+                         </div>
+                     </div>
+                    `});
+                    
+                    //muestro los productos realcionados
+                    document.getElementById('showProductosRelacionados').innerHTML = htmlRelatedP;
+
+                
+
+                }
+                });       
+            
+        };
+           
         }
     });
 
@@ -127,6 +174,11 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
 
     });
+        
+        
 
+        
+            
+        
 });
 
