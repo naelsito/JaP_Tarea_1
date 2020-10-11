@@ -9,10 +9,11 @@
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
   <!-- Google SignIn - SignOut -->
-  <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="950053127981-n252qgt4tg7bpegc2dv20i452dbho50p.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <!-- Fin Google --> 
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="950053127981-n252qgt4tg7bpegc2dv20i452dbho50p.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Fin Google -->
+
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
@@ -38,19 +39,14 @@
 </head>
 
 <body>
-  <script>
-      //Muestro Usuario - Barra superior
-      var localuser = localStorage.getItem('user');
-      document.getElementById("usuario").innerHTML=localuser;
-  </script>
-  <nav class="site-header sticky-top py-1 bg-dark">
+ <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="login.html">Inicio</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <!-- Dropdown menu del usuario -->
       
+      <!-- Dropdown menu del usuario -->
       <img id="menuImg" src="#"><a class="nav-link dropdown-toggle" data-toggle="dropdown" id="menuUsuario" href="#">Usuario</a>
       <div class="dropdown-menu" id="usuarioName">
       <a class="py-2 d-none d-md-inline-block" href="my-profile.html">Perfil</a>
@@ -59,17 +55,104 @@
       <br>
       <a class="py-2 d-none d-md-inline-block" onclick="signOut();" href="#">Cerrar Sesión</a>
       <br>
+
+      
       </div>
     </div>
   </nav>
+    
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+    <h2 style="text-align:center;"> Tu carrito </h2> 
+    
+       
+  <div class="container"> 
+    <table class="table">
+      <thead class="thead-gray">
+        <tr justify="center">
+           <th scope="col"></th>
+           <th scope="col">Cantidad</th> 
+           <th scope="col">Articulo</th>
+           <th scope="col">Precio Unitario</th>
+           <th scope="col">Subtotal</th>
+        </tr> 
+      
+      </thead>
+      <tbody id="cart"> 
+
+      </tbody>
+    </table>
+    
+
   </div>
+
+
+           <div class="col-md-4 mb-3">
+                    <label for="state">Moneda</label>
+                    <select class="custom-select d-block w-100" id="productCurrency" required="">
+                      <option selected>Pesos Uruguayos (UYU)</option>
+                      <option>Dólares (USD)</option>
+                    </select>
+                    
+              <div> 
+                <hr>
+                <h4 class="d-block my-3">Seleccione tipo de envío</h4> 
+                <br>
+                <div class="custom-control custom-radio">
+                  <input id="premiumradio" name="envioType" type="radio" class="custom-control-input" checked="" required="" value="15" onclick="cart">
+                  <label class="custom-control-label" for="premiumradio">Premium de 2 a 5 dias (15%)</label>
+                </div>
+                <br>
+                <div class="custom-control custom-radio">
+                  <input id="expressradio" name="envioType" type="radio" class="custom-control-input"  required="" value="7" onclick="cart">
+                  <label class="custom-control-label" for="expressradio">Express 5 a 8 dias (7%)</label>
+                </div>
+                <br>
+                <div class="custom-control custom-radio">
+                  <input id="standardradio" name="envioType" type="radio" class="custom-control-input"  required="" value="5" onclick="cart" >
+                  <label class="custom-control-label" for="standardradio">Estándar 12 a 15 dias (5%)</label>
+                </div>
+                <br>
+              </div>
+              <h4 class="row"> Datos de envío </h4> 
+              <hr>
+                <div><label for="state">Calle</label><input box  id="addressStreet" required=""> <label for="state">Puerta<input box  id="streetNumb" required=""></label></div>
+               <div><label for="state">Esquina</label> <input box  id="streetCorn" required=""></div>
+
+              <hr class="mb-4">
+              <h5 class="mb-3">Costos</h5>
+              <ul class="list-group mb-3">
+                  <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                      <h6 class="my-0">Precio</h6>
+                      <small class="text-muted">Precio unitario</small>
+                    </div>
+
+                    <span class="text-muted" id="subtotal"></span>
+                    <span class="text-muted" id="productCostText"></span>
+
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                      <h6 class="my-0">Porcentaje</h6>
+                      <small class="text-muted">Tipo de envío</small>
+                    </div>
+
+                    <span class="text-muted" id="envio"></span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Total ($)</span>
+                    <strong id="total"></strong>
+                    <span class="text-muted" id="comissionText"></span>
+                  </li>
+                                  </ul>
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg" type="submit">Terminar compra</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer class="text-muted">
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -108,13 +191,11 @@
       });
     }
   </script>
-    
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
-  <script src="js/login.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 
